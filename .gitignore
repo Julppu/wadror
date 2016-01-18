@@ -137,3 +137,5 @@ Session.vim
 .netrwhist
 *~
 
+# Ignore rbenv files
+.rbenv-gemsets
