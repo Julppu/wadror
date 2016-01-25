@@ -2,11 +2,10 @@
 
 <ul>
   <% @ratings.each do |rating| %>
-      <li> <%= Beer.find(rating.beer_id).name %> </li>
-      <li> <%= rating.score %> </li>
+      <li> <%= rating %> </li>
   <% end %>
 </ul>
 
 <p>
-  Total ratings: <% Ratings.count %>
+  Total ratings: <%= Rating.count %>
 </p>
