@@ -12,7 +12,7 @@
 
 <p>
   <strong>Brewery:</strong>
-  <%= @beer.brewery_id %>
+  <%= Brewery.find(@beer.brewery_id).name %>
 </p>
 
 <%= link_to 'List of breweries', breweries_path %> |
