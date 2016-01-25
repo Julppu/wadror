@@ -1,3 +1,12 @@
 <h2>List of ratings</h2>
 
-<p>To be completed...</p>
+<ul>
+  <% @ratings.each do |rating| %>
+      <li> <%= Beer.find(rating.beer_id).name %> </li>
+      <li> <%= rating.score %> </li>
+  <% end %>
+</ul>
+
+<p>
+  Total ratings: <% Ratings.count %>
+</p>
