@@ -9,4 +9,8 @@ class Beer < ActiveRecord::Base
     end
     avg / self.ratings.size
   end
+
+  def to_s
+    "#{self.name} from the brewery #{self.brewery.name}"
+  end
 end
