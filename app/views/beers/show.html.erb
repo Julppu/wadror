@@ -20,7 +20,9 @@
   <% if @beer.ratings.empty? %>
       beer has not yet been rated!
   <% else %>
-      Has <%= @beer.ratings.size %> ratings, average <%= @beer.average_rating %>
+      Has <%= @beer.ratings.size %>
+      <%= "rating".pluralize(@beer.ratings.size) %>,
+      average <%= @beer.average_rating %>
   <% end %>
 </p>
 
