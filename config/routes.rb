@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :ratings, only: [:index, :new, :create, :destroy]
 
   get 'signup', to: 'users#new'
-  
+
   resource :session, only: [:new, :create, :delete]
 
   # The priority is based upon order of creation: first created -> highest priority.
