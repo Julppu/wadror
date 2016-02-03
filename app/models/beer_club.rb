@@ -1,3 +1,3 @@
 class BeerClub < ActiveRecord::Base
-  has_many :members, -> { uniq }, source: :user
+  has_many :members, -> { uniq }, through :memberships, source: :user
 end
