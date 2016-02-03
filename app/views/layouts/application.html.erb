@@ -10,8 +10,13 @@
 
 <div class="navibar">
   <% if current_user %>
-      <p><%= current_user.username %> signed in</p>
+      <%= current_user.username %> signed in
+      <%= link_to 'sign out', signout_path %>
+  <% else %>
+      <%= link_to 'sign in', signin_path %>
+      <%= link_to 'create account', signup_path %>
   <% end %>
+  |
   <%= link_to 'breweries', breweries_path %>
   <%= link_to 'beers', beers_path %>
   <%= link_to 'ratings', ratings_path %>
