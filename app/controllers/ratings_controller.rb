@@ -5,10 +5,14 @@ class RatingsController < ApplicationController
   end
 
   def create
-    rating = Rating.create params.require(:rating).permit(:score, :beer_id)
-    # save a completed rating to session
-    current_user.ratings << rating
-    redirect_to current_user
+    @rating = Rating.new params.require(:rating).permit(:score, :beer_id)
+    if @rating.save
+      current_user.ratings << @rating
+      redirect_to user_path current_user
+    else
+      @beers = Beer.all
+      render :new
+    end
   end
 
   def new
