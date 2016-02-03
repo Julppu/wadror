@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include RatingsAverage
   has_many :ratings
+  has_many :beers, through: :ratings
 
   validates :username, uniqueness: true,
             length: { minimum: 3 },
