@@ -14,17 +14,20 @@ class MembershipsController < ApplicationController
 
   # GET /memberships/new
   def new
+    @beer_clubs = BeerClub.all
     @membership = Membership.new
   end
 
   # GET /memberships/1/edit
   def edit
+    @beer_clubs = BeerClub.all
   end
 
   # POST /memberships
   # POST /memberships.json
   def create
     @membership = Membership.new(membership_params)
+    @beer_clubs = BeerClub.all
 
     respond_to do |format|
       if @membership.save

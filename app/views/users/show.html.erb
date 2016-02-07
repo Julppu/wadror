@@ -16,7 +16,17 @@
     </li>
     <% end %>
   </ul>
-  <br>
+</p>
+
+<p>
+  <strong>Memberships:</strong>
+  <ul>
+    <% @user.memberships.each do |membership| %>
+      <li>
+        <%= membership.name %>
+      </li>
+    <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

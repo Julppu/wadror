@@ -12,6 +12,7 @@
   <% if current_user %>
       <%= current_user.username %> signed in
       <%= link_to 'sign out', signout_path %>
+      <%= link_to 'join a club', new_membership_path %>
   <% else %>
       <%= link_to 'sign in', signin_path %>
       <%= link_to 'create account', signup_path %>
@@ -19,6 +20,7 @@
   |
   <%= link_to 'breweries', breweries_path %>
   <%= link_to 'beers', beers_path %>
+  <%= link_to 'beer clubs', beer_clubs_path %>
   <%= link_to 'ratings', ratings_path %>
 </div>
 
