@@ -2,9 +2,11 @@
 
 <p>
   <strong>Username:</strong>
-  <%= @user.username %>
+  <%= @user.username %><br>
   Has made <%= @user.ratings.size %> ratings <br>
+  <% if not @user.ratings.empty? %>
   with average rating <%= @user.average_rating %>
+  <% end %>
 </p>
 
 <p>
@@ -34,4 +36,4 @@
 
 <%= link_to 'Back', users_path %> |
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Destroy', destroy_user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }  %>
+<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }  %>
