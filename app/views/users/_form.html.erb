@@ -1,3 +1,9 @@
+<% if @user.new_record? %>
+  <h1>New User</h1>
+<%e else %>
+  <h1>Editing password for <%= @user.name %></h1>
+<% end %>
+
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -11,10 +17,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </div>
+  <% if @user.new_record? %>
+      <div class="field">
+        <%= f.label :username %><br />
+        <%= f.text_field :username %>
+      </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
