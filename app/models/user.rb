@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true,
             length: { minimum: 3 },
             length: { maximum: 15 }
+  validates :password,
+            length: {minimum: 4},
+            format: { with: /[A-Za-z]+[0-9]+/ }
 end
