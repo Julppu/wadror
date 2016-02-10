@@ -51,7 +51,7 @@ RSpec.describe User, type: :model do
     let(:user) { FactoryGirl.create(:user) }
 
     it "has method for determining one" do
-      expected(user).to respond_to(:favorite_style)
+      expect(user).to respond_to(:favorite_style)
     end
 
     it "without ratings does not have one" do
