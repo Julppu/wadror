@@ -70,6 +70,29 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "favorite brewery" do
+    let(:user) { FactoryGirl.create(:user) }
+
+    it "has method for determining one" do
+      expect(user).to respond_to(:favorite_brewery)
+    end
+
+    it "without ratings does not have one" do
+      expect(user.favorite_brewery).to eq(nil)
+    end
+
+    it "is the only rated if only one rating" do
+      beer = create_beer_with_rating(user, 10)
+      expect(user.favorite_brewery).to eq(beer.brewery)
+    end
+
+    it "is the one with highest ratings if several rated" do
+      create_beers_with_ratings(user, 10, 20, 15, 7, 9)
+      best = create_beer_with_rating(user, 25)
+      expect(user.favorite_brewery).to eq(best.brewery)
+    end
+  end
+
   describe "with a proper password" do
     let(:user){ FactoryGirl.create(:user) }
 
