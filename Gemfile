@@ -37,9 +37,13 @@ group :development, :test do
   gem 'byebug'
   gem 'better_errors'
   gem 'sqlite3'
+end
+
+group :test do
   gem 'rspec',  '~> 3.0'
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
+  gem 'factory_girl_rails'
 end
 
 group :development do
