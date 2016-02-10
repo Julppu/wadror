@@ -25,6 +25,6 @@ class User < ActiveRecord::Base
 
   def favorite_brewery
     return nil if ratings.empty?
-    ratings.order(score: :desc).limit(1).first.beer.brewery
+    ratings.order(score: :desc).limit(1).first.beer.brewery.name
   end
 end
