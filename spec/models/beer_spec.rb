@@ -19,4 +19,16 @@ RSpec.describe Beer, type: :model do
     expect(beer).not_to be_valid
     expect(Beer.count).to eq(0)
   end
+
+  describe "when one beer exists" do
+    let(:beer){FactoryGirl.create(:beer)}
+
+    it "is valid" do
+      expect(beer).to be_valid
+    end
+
+    it "has the default style" do
+      expect(beer.style).to eq("Lager")
+    end
+  end
 end
