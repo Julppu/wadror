@@ -38,6 +38,8 @@ group :development, :test do
   gem 'better_errors'
   gem 'sqlite3'
   gem 'rspec',  '~> 3.0'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
 end
 
 group :development do
