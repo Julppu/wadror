@@ -22,4 +22,9 @@ class User < ActiveRecord::Base
     return nil if ratings.empty?
     ratings.order(score: :desc).limit(1).first.beer.style
   end
+
+  def favorite_brewery
+    return nil if ratings.empty?
+    ratings.order(score: :desc).limit(1).first.beer.brewery
+  end
 end
