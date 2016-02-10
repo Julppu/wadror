@@ -8,8 +8,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   validates :username, uniqueness: true,
-            length: { minimum: 3 },
-            length: { maximum: 15 }
+            length: { minimum: 3, maximum: 15 }
   validates :password,
             length: {minimum: 4},
             format: { with: /[A-Za-z]+[0-9]+/ }
