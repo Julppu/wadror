@@ -20,11 +20,19 @@ class User < ActiveRecord::Base
 
   def favorite_style
     return nil if ratings.empty?
-    ratings.order(score: :desc).limit(1).first.beer.style
+    ratings.joins(:beer).group(:style).average(:score).max_by { |key, value| value }.first
   end
 
   def favorite_brewery
     return nil if ratings.empty?
-    ratings.order(score: :desc).limit(1).first.beer.brewery.name
+    ratings.group_by { |rating| rating.beer.brewery }.map {
+        |key, value| [key, sequence(value)]
+    }.max_by { |key, value| value }.first
+  end
+
+  # helper method to calculate average of a subsequence of a map
+  def sequence(sub_ratings)
+    return nil if sub_ratings.empty?
+    ratings.inject(0.0) { |sum, rating| sum + rating.score }.to_f / sub_ratings.count
   end
 end
