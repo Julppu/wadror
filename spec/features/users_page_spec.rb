@@ -16,8 +16,8 @@ describe "User" do
   it "shows ratings correctly" do
     create_ratings
     visit user_path user
-    expect(page).to have_content "Has made 3 ratings"
-    expect(page).to have_content "Sandels: 20"
+    expect(page).to have_content 'Has made 3 ratings'
+    expect(page).to have_content 'Sandels: 20'
   end
 
   it "deletes ratings correctly" do
@@ -26,17 +26,17 @@ describe "User" do
 
     visit user_path user
     first(:link, 'delete').click
-    expect(page).to have_content "Has made 2 ratings"
-    expect(page).to have_content "Sandels: 20"
+    expect(page).to have_content 'Has made 2 ratings'
+    expect(page).to have_content 'Sandels: 20'
     expect(Rating.count).to eq(2)
   end
 
   it "shows correct favorite beer, style, brewery" do
     create_ratings
     visit user_path user
-    expect(page).to have_content "Beer: Sandels"
-    expect(page).to have_content "Style: Lager"
-    expect(page).to have_content "Brewery: Koff"
+    expect(page).to have_content 'Beer: Sandels from the brewery Koff'
+    expect(page).to have_content 'Style: Lager'
+    expect(page).to have_content 'Brewery: Koff, founded 1900'
   end
 end
 
@@ -46,6 +46,6 @@ def create_ratings
     visit new_rating_path
     select(name, from:'rating[beer_id]')
     fill_in('rating[score]', with:score)
-    click_button "Create Rating"
+    click_button 'Create Rating'
   end
 end
