@@ -14,16 +14,30 @@ describe "User" do
   end
 
   it "shows ratings correctly" do
-    rating_score = { 5 => "iso 3", 15 => "Karhu", 20 => "Sandels"  }
-    rating_score.each do |score, name|
-      visit new_rating_path
-      select(name, from:'rating[beer_id]')
-      fill_in('rating[score]', with:score)
-      click_button "Create Rating"
-    end
-
+    create_ratings
     visit user_path user
     expect(page).to have_content "Has made 3 ratings"
     expect(page).to have_content "Sandels: 20"
+  end
+
+  it "deletes ratings correctly" do
+    create_ratings
+    expect(Rating.count).to eq(3)
+
+    visit user_path user
+    first(:link, 'delete').click
+    expect(page).to have_content "Has made 2 ratings"
+    expect(page).to have_content "Sandels: 20"
+    expect(Rating.count).to eq(2)
+  end
+end
+
+def create_ratings
+  rating_score = { 5 => "iso 3", 15 => "Karhu", 20 => "Sandels"  }
+  rating_score.each do |score, name|
+    visit new_rating_path
+    select(name, from:'rating[beer_id]')
+    fill_in('rating[score]', with:score)
+    click_button "Create Rating"
   end
 end
