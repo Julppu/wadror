@@ -30,6 +30,14 @@ describe "User" do
     expect(page).to have_content "Sandels: 20"
     expect(Rating.count).to eq(2)
   end
+
+  it "shows correct favorite beer, style, brewery" do
+    create_ratings
+    visit user_path user
+    expect(page).to have_content "Beer: Sandels"
+    expect(page).to have_content "Style: Lager"
+    expect(page).to have_content "Brewery: Koff"
+  end
 end
 
 def create_ratings
