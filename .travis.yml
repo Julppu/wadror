@@ -1,10 +1,16 @@
 language: ruby
-
 rvm:
- - 2.3.0
-
+- 2.3.0
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -fd spec/
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: KcREk08MvXnLL8xWEZYQfMCIvCpOzx5H5FSrp8nXN7snC0xdZg9vCbFqWOw7h+kE5ydemuvnflltQ0N4Rx1MbvDadF4bYw8sH6Ad25829tDkEj4UhoskT9mC+lB2opeI0gz6mr2fVfa4Dt6R4Ec0ACKwBxpWLAyXymBGHjKn5QBGc30cKy7YDMbyywOMJcYbEmtw6lBC4TJkrFzS7sPR+LxcjFYb1pw/lcpiT0XHwdLc/zqoLa1IH6taKTFeqoq2FVEuhyaug0xNdpTYtUqoWaNG36LreEMKT1jKBpyldUAJyzUrrD8GsmnFZld8KLrN2sfQ+mYd2KgTLEHNgPo+ePYCe032CvKomOzbYt6Rrh2MagcP6Ox12gRjcBaobn7iU9SMbaI08w1HcMpG4SSsbhBjzlSN9wStiQNBtyT4OU0TM0RhbgtNiH13vd6tLHA1TWwyRAfhnwmOu0oDW9iw6A+kaKvDQctuAdsB/5mA5MaJEb0yy5f1ytfJEyKpNoFrLuRhjNdYAiZVxY6jIxp0KI04V+AhTrzE9Wx4/LEqMGBpXhkfJkn5+ffoMrQzDhqqTlV7qQAGhBJ5QufZv38CV+MC/tQXIOEgwPgfPgloAryw2dwz0qiO1MamB8bl2NVgpGJVwKugi/toXwAvcfBMy4SyDhuY0vVdS09CzPFi/hs=
+  app: vast-taiga-4720
+  on:
+    repo: Julppu/wadror
