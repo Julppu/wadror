@@ -5,7 +5,7 @@ class Beer < ActiveRecord::Base
   has_many :raters, -> { uniq }, through: :ratings, source: :user
 
   validates :name, presence: true, length: { minimum: 1 }
-  validates :style, presence: true
+  validates :style, presence: true, length: { minimum: 1 }
 
   def to_s
     "#{self.name} from the brewery #{self.brewery.name}"

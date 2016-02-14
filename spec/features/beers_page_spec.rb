@@ -37,6 +37,7 @@ describe "Beers page" do
       expect{
         click_button('Create Beer')
       }.not_to change{Beer.count}
+      expect(page).to have_content "Name can't be blank"
     end
   end
 
