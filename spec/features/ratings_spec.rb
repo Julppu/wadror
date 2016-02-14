@@ -12,6 +12,23 @@ describe "Rating" do
     sign_in(username:"Pekka", password:"Foobar1")
   end
 
+  it "shows no ratings when not exists" do
+    visit ratings_path
+    expect(page).to have_content "Total ratings: 0"
+    expect(Rating.count).to eq(0)
+  end
+
+  it "shows all ratings when succesfully created" do
+    visit new_rating_path
+    select('iso 3', from:'rating[beer_id]')
+    fill_in('rating[score]', with:'15')
+    click_button "Create Rating"
+
+    visit ratings_path
+    expect(page).to have_content "Total ratings: 1"
+    expect(Rating.count).to eq(1)
+  end
+
   it "when given, is registered to the beer and user who is signed in" do
     visit new_rating_path
     select('iso 3', from:'rating[beer_id]')
