@@ -1,11 +1,18 @@
 require 'rails_helper'
 
 describe "Breweries page" do
+
+  before :each do
+    visit signin_path
+    fill_in('username', with:'Pekka')
+    fill_in('password', with:'Foobar1')
+    click_button('Log in')
+  end
+
   it "should not have any before been created" do
     visit breweries_path
     expect(page).to have_content 'Listing Breweries'
     expect(page).to have_content 'Number of breweries: 0'
-
   end
 
   describe "when breweries exists" do

@@ -57,8 +57,6 @@ describe "Beers page" do
         expect(page).to have_content beer_name
       end
     end
-
-    it "allows user to navigate to page of a Beer" do
-    end
   end
+
 end

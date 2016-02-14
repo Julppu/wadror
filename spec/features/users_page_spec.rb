@@ -10,7 +10,10 @@ describe "User" do
   let!(:user) { FactoryGirl.create :user }
 
   before :each do
-    sign_in(username:"Pekka", password:"Foobar1")
+    visit signin_path
+    fill_in('username', with:'Pekka')
+    fill_in('password', with:'Foobar1')
+    click_button('Log in')
   end
 
   it "shows ratings correctly" do
