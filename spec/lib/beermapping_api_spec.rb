@@ -17,4 +17,37 @@ describe "BeermappingApi" do
     expect(place.street).to eq("Merituulentie 30")
   end
 
+  it "When HTTP GET returns no entries, nothing parsed and returned" do
+
+    canned_answer = <<-END_OF_STRING
+<?xml version='1.0' encoding='utf-8' ?><bmp_locations><location><id></id><name></name><status></status><reviewlink></reviewlink><proxylink></proxylink><blogmap></blogmap><street></street><city></city><state></state><zip></zip><country></country><phone></phone><overall></overall><imagecount></imagecount></location></bmp_locations>
+    END_OF_STRING
+
+    stub_request(:get, /.*perkele/).to_return(body: canned_answer, headers: { 'Content-Type' => "text/xml" })
+
+    places = BeermappingApi.places_in("perkele")
+
+    expect(places.size).to eq(0)
+    place = places.first
+    expect(place).to be_nil
+  end
+
+  it "When HTTP GET returns no entries, it is not parsed and returned" do
+
+    canned_answer = <<-END_OF_STRING
+<?xml version='1.0' encoding='utf-8' ?><bmp_locations><location><id>13307</id><name>O&apos;Connell&apos;s Irish Bar</name><status>BeerBar</status><reviewlink>http://beermapping.com/maps/reviews/reviews.php?locid=13307</reviewlink><proxylink>http://beermapping.com/maps/proxymaps.php?locid=13307&amp;d=5</proxylink><blogmap>http://beermapping.com/maps/blogproxy.php?locid=13307&amp;d=1&amp;type=norm</blogmap><street>Rautatienkatu24</street><city>Tampere</city><state/><zip>33100</zip><country>Finland</country><phone>35832227032</phone><overall>0</overall><imagecount>0</imagecount></location><location><id>18845</id><name>Pyynikin k&#228;sity&#246;l&#228;ispanimo</name><status>Brewery</status><reviewlink>http://beermapping.com/maps/reviews/reviews.php?locid=18845</reviewlink><proxylink>http://beermapping.com/maps/proxymaps.php?locid=18845&amp;d=5</proxylink><blogmap>http://beermapping.com/maps/blogproxy.php?locid=18845&amp;d=1&amp;type=norm</blogmap><street>Tesomanvaltatie24</street><city>Tampere</city><state/><zip>33300</zip><country>Finland</country><phone/><overall>0</overall><imagecount>0</imagecount></location><location><id>18857</id><name>Panimoravintola Plevna</name><status>Brewpub</status><reviewlink>http://beermapping.com/maps/reviews/reviews.php?locid=18857</reviewlink><proxylink>http://beermapping.com/maps/proxymaps.php?locid=18857&amp;d=5</proxylink><blogmap>http://beermapping.com/maps/blogproxy.php?locid=18857&amp;d=1&amp;type=norm</blogmap><street>It&#228;inenkatu8</street><city>Tampere</city><state/><zip>33210</zip><country>Finland</country><phone/><overall>0</overall><imagecount>0</imagecount></location></bmp_locations>
+    END_OF_STRING
+
+    stub_request(:get, /.*tampere/).to_return(body: canned_answer, headers: { 'Content-Type' => "text/xml" })
+
+    places = BeermappingApi.places_in("tampere")
+
+    expect(places.size).to eq(3)
+    place = places.first
+    expect(place.name).to eq("O'Connell's Irish Bar")
+    place = places.second
+    expect(place.name).to eq("Pyynikin käsityöläispanimo")
+    place = places.last
+    expect(place.name).to eq("Panimoravintola Plevna")
+  end
 end
