@@ -5,12 +5,7 @@ include Helpers
 describe "Beers page" do
 
   let!(:brewery) { FactoryGirl.create :brewery, name:"Koff" }
-  before :each do
-    visit signin_path
-    fill_in('username', with:'Pekka')
-    fill_in('password', with:'Foobar1')
-    click_button('Log in')
-  end
+  let!(:user) { FactoryGirl.create :user }
 
   it "should not have any before been created" do
     visit beers_path
@@ -19,14 +14,12 @@ describe "Beers page" do
   end
 
   describe "when adding a beer" do
-    it "does not create a beer with non valid style" do
-      visit new_beer_path
-      fill_in('beer_name', with:'Koff III')
-      select('Koff', from:'beer_brewery_id')
 
-      expect{
-        click_button('Create Beer')
-      }.not_to change{Beer.count}
+    before :each do
+      visit signin_path
+      fill_in('username', with:'Pekka')
+      fill_in('password', with:'Foobar1')
+      click_button('Log in')
     end
 
     it "does not create a beer with non valid name" do
