@@ -11,4 +11,7 @@ https://vast-taiga-4720.herokuapp.com/breweries
 [![Build Status](https://travis-ci.org/Julppu/wadror.png)](https://travis-ci.org/Julppu/wadror)
 
 #### Code Climate
-[![Code Climate](https://codeclimate.com/github/Julppu/wadror.png)](https://codeclimate.com/github/Julppu/wadror)
+[![Code Climate](https://codeclimate.com/github/Julppu/wadror/badges/gpa.svg)](https://codeclimate.com/github/Julppu/wadror)
+
+#### Code Climate test coverage
+[![Test Coverage](https://codeclimate.com/github/Julppu/wadror/badges/coverage.svg)](https://codeclimate.com/github/Julppu/wadror/coverage)

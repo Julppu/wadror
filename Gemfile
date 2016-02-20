@@ -49,6 +49,7 @@ group :test do
   gem 'rspec-its'
   gem 'simplecov', require: false
   gem 'webmock'
+  gem 'codeclimate-test-reporter'
 end
 
 group :development do
