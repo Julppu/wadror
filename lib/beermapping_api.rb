@@ -19,8 +19,9 @@ class BeermappingApi
       Place.new(place)
     end
   end
-  
+
   def self.key
-    "4d7ef199e5e2554f733491b065fc3d07"
+    raise "APIKEY env variable not defined" if ENV['APIKEY'].nil?
+    ENV['APIKEY']
   end
 end
