@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= @place.name %></strong>
+</p>
+
+<p>
+  <%= "#{@place.street}" %></br>
+  <%= "#{@place.city}, #{@place.country}" %>
+</p>
+
+<iframe src="<% @place.blogmap %>"></iframe>
