@@ -23,14 +23,14 @@
   </ul>
 </p>
 
-<% if current_user and not current_user.in? @beerclub.members %>
+<% if current_user and not current_user.in? @beer_club.memberships %>
   <%= form_for(@membership) do |f| %>
     <%= f.hidden_field :beer_club_id %>
     <%= f.submit value: "Join the club" %>
   <% end %>
 <% end %>
 
-<% if current_user and current_user.in? @beerclub.members %>
+<% if current_user and current_user.in? @beer_club.memberships %>
   <%= form_for(@membership, method: "delete") do |f| %>
     <%= f.hidden_field :beer_club_id %>
     <%= f.submit value: "Leave the club" %>

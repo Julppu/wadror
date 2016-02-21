@@ -27,11 +27,10 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @membership = Membership.new(membership_params)
-    @beer_clubs = BeerClub.all
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to @membership.beer_club, notice: "#{current_user.username}, welcome to the club!" }
+        format.html { redirect_to @membership.beer_club, notice: "#{@membership.user.username}, welcome to the club!" }
         format.json { render :show, status: :created, location: @membership }
       else
         format.html { render :new }
