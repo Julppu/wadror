@@ -13,7 +13,7 @@
 
   <%= f.select :user_id, current_user %>
   <div class="field">
-    <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name) %>
+    <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name, selected: @beer_club) %>
   </div>
   <div class="actions">
     <%= f.submit %>
