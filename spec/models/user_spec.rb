@@ -60,13 +60,13 @@ RSpec.describe User, type: :model do
 
     it "is the only rated if only one rating" do
       beer = create_beer_with_rating(user, 10)
-      expect(user.favorite_style).to eq(beer.style)
+      expect(user.favorite_style.name).to eq(beer.style.name)
     end
 
     it "is the one with highest ratings if several rated" do
       create_beers_with_ratings(user, 1, 1, 1, 1, 1)
       best = create_beer_with_rating(user, 50)
-      expect(user.favorite_style).to eq(best.style)
+      expect(user.favorite_style.name).to eq(best.style.name)
     end
   end
 

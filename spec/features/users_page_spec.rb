@@ -4,9 +4,10 @@ include Helpers
 
 describe "User" do
   let!(:brewery) { FactoryGirl.create :brewery, name:"Koff" }
-  let!(:beer1) { FactoryGirl.create :beer, name:"iso 3", brewery:brewery }
-  let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", brewery:brewery }
-  let!(:beer3) { FactoryGirl.create :beer, name:"Sandels", brewery:brewery }
+  let!(:style) { FactoryGirl.create :style, name:"Lager" }
+  let!(:beer1) { FactoryGirl.create :beer, name:"iso 3", brewery:brewery, style:style }
+  let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", brewery:brewery, style:style }
+  let!(:beer3) { FactoryGirl.create :beer, name:"Sandels", brewery:brewery, style:style }
   let!(:user) { FactoryGirl.create :user }
 
   before :each do

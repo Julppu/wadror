@@ -37,7 +37,7 @@ describe "Beers page" do
   describe "when beers exist" do
     before :each do
       @beers = ["Iso III", "Iso IVA", "Sandels"]
-      beer_style = "Lager"
+      beer_style = Style.new name:"Lager", description: "Pale, mild"
       @beers.each do |beer_name|
         FactoryGirl.create(:beer, name: beer_name, style: beer_style)
       end
