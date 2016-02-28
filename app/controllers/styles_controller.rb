@@ -1,5 +1,6 @@
 class StylesController < ApplicationController
   before_action :set_style, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, only: [:destroy]
 
   # GET /styles
   # GET /styles.json
@@ -70,5 +71,9 @@ class StylesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def style_params
       params.require(:style).permit(:name, :description)
+    end
+
+    def authenticate
+      current_user.admin
     end
 end
