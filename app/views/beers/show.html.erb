@@ -23,5 +23,4 @@
 <% end %>
 
 <%= link_to 'List of breweries', breweries_path, class:'btn btn-primary' %>
-<%= link_to 'Edit', edit_beer_path(@beer), class:'btn btn-primary' if current_user %>
-<%= link_to 'Back', beers_path, class:'btn btn-primary' %>
+<%= edit_and_destroy_buttons(@style) %>

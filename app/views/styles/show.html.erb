@@ -15,6 +15,4 @@
   <% end %>
 </p>
 
-<%= link_to 'New style', new_style_path, class:'btn btn-primary' if current_user %>
-<%= link_to 'Edit', edit_style_path(@style), class:'btn btn-primary' if current_user %>
-<%= link_to 'Back', styles_path, class:'btn btn-primary' %>
+<%= edit_and_destroy_buttons(@style) %>
