@@ -34,4 +34,12 @@
   <% end %>
 </p>
 
+<p>
+  <strong>Top 3 raters:</strong>
+
+  <% User.top(3) do |u| %>
+      <% link_to u.name, u %>
+  <% end %>
+</p>
+
 <%= link_to 'New Rating', new_rating_path, class:'btn btn-primary' if current_user %>
