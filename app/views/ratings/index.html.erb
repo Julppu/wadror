@@ -10,4 +10,4 @@
   Total ratings: <%= Rating.count %>
 </p>
 
-<%= link_to 'New Rating', new_rating_path if current_user %>
+<%= link_to 'New Rating', new_rating_path, class:'btn btn-primary' if current_user %>
