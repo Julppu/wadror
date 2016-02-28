@@ -7,7 +7,6 @@ class Brewery < ActiveRecord::Base
                                    less_than_or_equal_to: Proc.new {Time.now.year} }
   validates :name, presence: true
 
-  def to_s
-    "#{self.name}, founded #{self.year}"
-  end
+  scope :active, -> { where active:true }
+  scope :retired, -> { where active:[nil,false] }
 end
