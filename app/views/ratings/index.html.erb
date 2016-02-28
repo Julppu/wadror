@@ -11,6 +11,22 @@
 </p>
 
 <p>
+  <strong>Top 3 beers:</strong>
+
+  <% Beer.top(3) do |b| %>
+      <% link_to b.name, b %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Top 3 breweries:</strong>
+
+  <% Brewery.top(3) do |b| %>
+      <% link_to b.name, b %>
+  <% end %>
+</p>
+
+<p>
   <strong>Top 3 styles:</strong>
 
   <% Style.top(3) do |s| %>
