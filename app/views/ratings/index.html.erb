@@ -10,4 +10,12 @@
   Total ratings: <%= Rating.count %>
 </p>
 
+<p>
+  <strong>Top 3 styles:</strong>
+
+  <% Style.top(3) do |s| %>
+    <% link_to s.name, s %>
+  <% end %>
+</p>
+
 <%= link_to 'New Rating', new_rating_path, class:'btn btn-primary' if current_user %>

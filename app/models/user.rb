@@ -35,9 +35,9 @@ class User < ActiveRecord::Base
     return nil if sub_ratings.empty?
     ratings.inject(0.0) { |sum, rating| sum + rating.score }.to_f / sub_ratings.count
   end
-  
+
   def self.top n
-    sorted_by_rating_in_desc_order = Brewery.all.sort_by{ |b| -(b.average_rating||0) }
+    sorted_by_rating_in_desc_order = User.all.sort_by{ |b| -(b.average_rating||0) }
     sorted_by_rating_in_desc_order.limit n
   end
 end
