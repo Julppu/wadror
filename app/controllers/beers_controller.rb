@@ -16,7 +16,9 @@ class BeersController < ApplicationController
   end
 
   def list
+  end
 
+  def nglist
   end
 
   # GET /beers/1
