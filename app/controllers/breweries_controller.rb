@@ -12,7 +12,7 @@ class BreweriesController < ApplicationController
     order = params[:order] || 'name'
 
     @active_breweries = case order
-                          when 'name' then @active_breweries.sort_by{ |b| b.name }
+                           when 'name' then @active_breweries.sort_by{ |b| b.name }
                           when 'year' then @active_breweries.sort_by{ |b| b.year }
                         end
 
@@ -76,6 +76,15 @@ class BreweriesController < ApplicationController
     end
   end
 
+  def toggle_activity
+    brewery = Brewery.find(params[:id])
+    brewery.update_attribute :active, (not brewery.active)
+
+    new_status = brewery.active? ? "active" : "retired"
+
+    redirect_to :back, notice:"brewery activity status changed to #{new_status}"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_brewery
@@ -91,6 +100,6 @@ class BreweriesController < ApplicationController
       admin_accounts = { "admin" => "secret", "pekka" => "beer", "arto" => "foobar", "matti" => "ittam"}
       authenticate_or_request_with_http_basic do |username, password|
         admin_accounts.include? username and password == admin_accounts[username]
-      end
     end
+  end
 end
