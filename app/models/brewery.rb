@@ -9,4 +9,9 @@ class Brewery < ActiveRecord::Base
 
   scope :active, -> { where active:true }
   scope :retired, -> { where active:[nil,false] }
+
+  def self.top n
+    sorted_by_rating_in_desc_order = Brewery.all.sort_by{ |b| -(b.average_rating||0) }
+    sorted_by_rating_in_desc_order.limit n
+  end
 end

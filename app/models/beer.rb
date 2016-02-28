@@ -11,4 +11,9 @@ class Beer < ActiveRecord::Base
   def to_s
     "#{self.name} from the brewery #{self.brewery.name}"
   end
+
+  def self.top n
+    sorted_by_rating_in_desc_order = Brewery.all.sort_by{ |b| -(b.average_rating||0) }
+    sorted_by_rating_in_desc_order.limit n
+  end
 end
